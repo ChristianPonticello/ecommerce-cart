@@ -18,11 +18,16 @@ function addToCart (aCart, prod) {
 }
 
 // 1)Esecuzione della funzione
-cart = addToCart(cart, {
-      name: 'iPhone',
-      price: 1500,
-      qty: 1
-})
+const addToCart = (aCart, prod) => {
+    try {
+        if (prod.qty === 0) throw new Error(`Il prodotto ${prod.name} non può avere prezzo 0`);
+        if (prod.price === 0) throw new Error(`Il prodotto ${prod.name} non può avere prezzo 0`);
+        aCart.push(prod);
+    } catch (error) {
+        console.error(error.message);
+    }
+    return aCart;
+}
 
 /* 2) Aggiungiamo 3 prodotti differenti nel carrello
 * Input: Il carrello
